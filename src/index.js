@@ -49,7 +49,13 @@ function decode(expr) {
             if (part[i] === "1" || part[i] === "*") 
             break
         }
-        newArray.push(part);
+        part = part.replaceAll("**********", " ");
+        let part1 = part.match(/..?/g);
+        for(let i = 0; i < part1.length; i++) {
+            part1[i] = part1[i].replace('10', ".");
+            part1[i] = part1[i].replace('11', "-");
+        }
+        newArray.push(part1);
     }
     return newArray;
 }
