@@ -41,15 +41,22 @@ function decode(expr) {
     let res = "";
     let array = Array.from(expr);
     console.log(array);
+    let newArray = [];
+    let newSymbol = "";
     for (let index = 0; index < array.length; ++index) {
         if (array[index] === " ") {
-            res = res + "******";
+            newArray = newArray.concat("**********");
         } else {
-            res = res + Object.keys(MORSE_TABLE).find(key =>
+            symbol = Object.keys(MORSE_TABLE).find(key =>
                 MORSE_TABLE[key] === array[index]);
+
+            newSymbol = symbol.replaceAll("-", "11");
+            newSymbol =  newSymbol.replaceAll(".", "10");
+
+            newArray = newArray.concat(newSymbol);
         } 
     }
-    return res;
+    return newArray;
 }
 
 module.exports = {
