@@ -42,8 +42,13 @@ function decode(expr) {
     console.log(array);
     const newArray = [];
     while (array.length > 0) {
-        const part = array.splice(0, 10);
-        // console.log(part);
+        let part = array.splice(0, 10).join("");
+ 
+        for (let i = 0; i < part.length; i++) {
+            part = part.substring(i);
+            if (part[i] === "1" || part[i] === "*") 
+            break
+        }
         newArray.push(part);
     }
     return newArray;
