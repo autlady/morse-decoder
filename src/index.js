@@ -51,13 +51,22 @@ function decode(expr) {
         }
         part = part.replaceAll("**********", " ");
         let part1 = part.match(/..?/g);
+        let part2 = "";
+        let value = "";
         for(let i = 0; i < part1.length; i++) {
             part1[i] = part1[i].replace('10', ".");
             part1[i] = part1[i].replace('11', "-");
+            part2 = part1.join("");
+
+            if (part2 === " ") {
+                value = " "
+            } else {
+                value = MORSE_TABLE[part2];
+            } 
         }
-        newArray.push(part1);
+        newArray.push(value);
     }
-    return newArray;
+    return newArray.join("");
 }
 
 module.exports = {
