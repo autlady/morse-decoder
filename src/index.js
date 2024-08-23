@@ -40,23 +40,13 @@ const MORSE_TABLE = {
 function decode(expr) {
     let array = Array.from(expr);
     console.log(array);
-    let newArray = [];
-    let newSymbol = "";
-    for (let index = 0; index < array.length; ++index) {
-        if (array[index] === " ") {
-            newArray = newArray.concat("**********");
-        } else {
-            symbol = Object.keys(MORSE_TABLE).find(key =>
-                MORSE_TABLE[key] === array[index]);
-
-            newSymbol = symbol.replaceAll("-", "11");
-            newSymbol =  newSymbol.replaceAll(".", "10");
-            newSymbol = newSymbol.padStart(10, "0");
-
-            newArray = newArray.concat(newSymbol);
-        } 
+    const newArray = [];
+    while (array.length > 0) {
+        const part = array.splice(0, 10);
+        // console.log(part);
+        newArray.push(part);
     }
-    return newArray.join("");
+    return newArray;
 }
 
 module.exports = {
