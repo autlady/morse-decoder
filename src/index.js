@@ -56,7 +56,7 @@ function decode(expr) {
             newArray = newArray.concat(newSymbol);
         } 
     }
-    return newArray;
+    return newArray.join("");
 }
 
 module.exports = {
