@@ -38,7 +38,6 @@ const MORSE_TABLE = {
 };
 
 function decode(expr) {
-    let res = "";
     let array = Array.from(expr);
     console.log(array);
     let newArray = [];
@@ -52,6 +51,7 @@ function decode(expr) {
 
             newSymbol = symbol.replaceAll("-", "11");
             newSymbol =  newSymbol.replaceAll(".", "10");
+            newSymbol = newSymbol.padStart(10, "0");
 
             newArray = newArray.concat(newSymbol);
         } 
