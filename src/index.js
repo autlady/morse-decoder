@@ -38,25 +38,36 @@ const MORSE_TABLE = {
 };
 
 function decode(expr) {
+    // разбиваю строку на массив 
     let array = Array.from(expr);
-    console.log(array);
     const newArray = [];
+
     while (array.length > 0) {
+
+        // делю массив на элементы по 10 символов 
         let part = array.splice(0, 10).join("");
- 
-        for (let i = 0; i < part.length; i++) {
-            part = part.substring(i);
-            if (part[i] === "1" || part[i] === "*") 
-            break
+
+        // если звездочки - то пробел, иначе убираю все нули впереди 
+        if (part === "**********") {
+            part = part.replaceAll("**********", " ");
+        } else {
+            part = parseInt(part).toString();
         }
-        part = part.replaceAll("**********", " ");
+
+        // делю на 10 и 11
         let part1 = part.match(/..?/g);
+    
         let part2 = "";
         let value = "";
+
         for(let i = 0; i < part1.length; i++) {
+
+            // заменяю 10 и 11 на точки и тире
             part1[i] = part1[i].replace('10', ".");
             part1[i] = part1[i].replace('11', "-");
             part2 = part1.join("");
+
+            // заменяю точки и тире на пробелы и буквы
 
             if (part2 === " ") {
                 value = " "
@@ -66,7 +77,7 @@ function decode(expr) {
         }
         newArray.push(value);
     }
-    return newArray.join("");
+    return newArray.join(""); 
 }
 
 module.exports = {
